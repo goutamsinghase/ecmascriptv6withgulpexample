@@ -1,0 +1,24 @@
+{
+  "name": "es6withgulp-example",
+  "description": "This is for library files integration tool",
+  "main": "gulp.babel.js",
+  "authors": [
+    "Goutam Singha"
+  ],
+  "license": "ISC",
+  "moduleType": [],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.6",
+    "font-awesome": "fontawesome#~4.6.1",
+    "jquery-ui": "~1.11.4"
+  }
+}
