@@ -3,49 +3,64 @@
 
 <head>
     <title>To Do List</title>
-     <meta charset="utf-8">
+    <meta charset="utf-8">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
     <link href="./styles/css/app.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="./scripts/lib/lib.min.css">
 </head>
 
 <body>
-    <header>
-        <h1>Mortgage Calculator</h1>
-    </header>
-    <div class="content">
-        <div class="form">
-            <div>
-                <label>Principal:</label>
-                <input type="text" id="principal" value="200000" />
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-xs-12">
+                <h2>Choose Shape</h2>
+                <div class="row">
+                    <div class="col-sm-6 col-xs-12">
+                        <h3>Shape Name</h3>
+                        <div>
+                            <label>Square</label>
+                            <input type="radio" name="shape" value="square" checked="checked">
+                        </div>
+                        <div>
+                            <label>Rectangle</label>
+                            <input type="radio" name="shape" value="rectangle">
+                        </div>
+                        <div>
+                            <label>Circle</label>
+                            <input type="radio" name="shape" value="circle">
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xs-12">
+                        <h3>Dimension</h3>
+                        <div id="heightBlock">
+                            <label>Height</label>
+                            <input type="text" name="height" id="height">
+                        </div>
+                        <div id="widthBlock">
+                            <label>Width</label>
+                            <input type="text" name="width" id="width">
+                        </div>
+                        <div id="radiousBlock">
+                            <label>Radious</label>
+                            <input type="text" name="radious" id="radious">
+                        </div>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <button id="calcArea" class="btn btn-primary">Area</button>
+                </div>
+                <div class="text-center">
+                    <h3>Area</h3>
+                    <h4 id="area"></h4>
+                </div>
             </div>
-            <div>
-                <label>Years:</label>
-                <input type="text" id="years" value="30" />
-            </div>
-            <div>
-                <label htmlFor="rate">Rate:</label>
-                <input type="text" id="rate" value="5.0" />
-            </div>
-            <div>
-                <label htmlFor="calcBtn"></label>
-                <button id="calcBtn">Calculate</button>
+            <div class="col-sm-6 col-xs-12">
+                <h2>Shape</h2>
+                <p id="shape-area"></p>
             </div>
         </div>
-        <h2>Monthly Payment: <span id="monthlyPayment" class="currency"></span></h2>
-        <h3>Monthly Rate: <span id="monthlyRate"></span></h3>
-        <table>
-            <thead>
-                <tr>
-                    <th>Year</th>
-                    <th class="principal">Principal</th>
-                    <th class="stretch"></th>
-                    <th class="interest">Interest</th>
-                    <th>Balance</th>
-                </tr>
-            </thead>
-            <tbody id="amortization"></tbody>
-        </table>
     </div>
     <script type="text/javascript" src="./scripts/js/app.min.js"></script>
 </body>
+
 </html>

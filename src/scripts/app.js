@@ -1,31 +1,52 @@
-import Mortgage from './mortgage';
-document.getElementById('calcBtn').addEventListener('click', () => {
-    let principal = document.getElementById("principal").value;
-    let years = document.getElementById("years").value;
-    let rate = document.getElementById("rate").value;
-   // let { monthlyPayment, monthlyRate, amortization } = mortgage.calculateAmortization(principal, years, rate);
-    let mortgage = new Mortgage(principal, years, rate);
+// import MyShape from './main-public';
+import MyShape from './main-private';
 
-    document.getElementById("monthlyPayment").innerHTML = mortgage.monthlyPayment.toFixed(2);
-    document.getElementById("monthlyRate").innerHTML = (rate/12).toFixed(2);
-    let html = "";
-    mortgage.amortization.forEach((year, index) => html += `
-    <tr>
-        <td>${index + 1}</td>
-        <td class="currency">${Math.round(year.principalY)}</td> 
-        <td class="stretch">
-            <div class="flex">
-                <div class="bar principal" 
-                     style="flex:${year.principalY};-webkit-flex:${year.principalY}">
-                </div>
-                <div class="bar interest" 
-                     style="flex:${year.interestY};-webkit-flex:${year.interestY}">
-                </div>
-            </div>
-        </td>
-        <td class="currency left">${Math.round(year.interestY)}</td> 
-        <td class="currency">${Math.round(year.balance)}</td>
-    </tr>
-`);
-    document.getElementById("amortization").innerHTML = html;
+document.getElementById('heightBlock').style.display = 'none';
+document.getElementById('radiousBlock').style.display = 'none';
+
+let selectedShapes = document.querySelectorAll('input[type=radio]');
+let selectedShape = selectedShapes[0].value, height = 0,
+    width = 0,
+    radious = 0;
+
+for (let i = 0; i < selectedShapes.length; i++) {
+    selectedShapes[i].onclick = () => {
+        if (selectedShapes[i].checked) {
+            selectedShape = selectedShapes[i].value;
+            displayDimension(selectedShape);
+            console.log('Shape', selectedShape);
+        }
+    }
+}
+
+let displayDimension = (selectedShape) => {
+    console.log('selectedShape', selectedShape);
+    switch (selectedShape) {
+        case 'square':
+            document.getElementById('widthBlock').style.display = 'block';
+            document.getElementById('heightBlock').style.display = 'none';
+            document.getElementById('radiousBlock').style.display = 'none';
+            console.log('Shape', selectedShape);
+            break;
+        case 'rectangle':
+            document.getElementById('widthBlock').style.display = 'block';
+            document.getElementById('heightBlock').style.display = 'block';
+            document.getElementById('radiousBlock').style.display = 'none';
+            console.log('Shape', selectedShape);
+            break;
+        case 'circle':
+            document.getElementById('widthBlock').style.display = 'none';
+            document.getElementById('heightBlock').style.display = 'none';
+            document.getElementById('radiousBlock').style.display = 'block';
+            console.log('Shape', selectedShape);
+            break;
+    }
+
+}
+
+document.getElementById('calcArea').addEventListener('click', () => {
+    let selectedShapeObject = new MyShape(selectedShape, [document.getElementById('height').value,document.getElementById('width').value, document.getElementById('radious').value]);
+    // selectedShapeObject.shapeName = 'square';  // accessing outside by shapeName which is harmful of area calculation    
+    document.getElementById('area').innerHTML = selectedShapeObject.area();
+    selectedShapeObject.draw();
 });
